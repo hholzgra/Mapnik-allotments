@@ -12,33 +12,35 @@
   </FontSet>
 
 
-<Style name="plot">
-  <Rule>
-    <LineSymbolizer stroke="#444444" stroke-width="0.4"/>
-    <TextSymbolizer fill="#000000" fontset-name="fontset-0" placement="interior" size="10"><![CDATA[[ref]]]></TextSymbolizer>
-  </Rule>
-</Style>
+  <Style name="plot">
+    <Rule>
+      <LineSymbolizer stroke="#444444" stroke-width="0.4"/>
+      <TextSymbolizer fill="#000000" fontset-name="fontset-0" placement="interior" size="10"><![CDATA[[ref]]]></TextSymbolizer>
+    </Rule>
+  </Style>
 
-<Layer name="plot" status="on"  srs="+init=epsg:3857">
-  <StyleName>plot</StyleName>
-  <Datasource>
-    <Parameter name="table">
-      ( SELECT way, ref
-         FROM planet_osm_polygon
-        WHERE ref IS NOT NULL
-	AND tags->'allotments' = 'plot'
-	AND ST_Intersects(way, !bbox!)
-	UNION
-       SELECT ST_MakePolygon(ST_AddPoint(way, ST_StartPoint(way))) AS way, ref
-         FROM planet_osm_line
-        WHERE ref IS NOT NULL
-	AND tags->'allotments' = 'plot'
-	AND ST_Intersects(way, !bbox!)
+  <Layer name="plot" status="on"  srs="+init=epsg:3857">
+    <StyleName>plot</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        ( SELECT way, ref
+           FROM planet_osm_polygon
+          WHERE ref IS NOT NULL
+	    AND tags->'allotments' = 'plot'
+	    AND ST_Intersects(way, !bbox!)
+
+	  UNION
+
+         SELECT ST_MakePolygon(ST_AddPoint(way, ST_StartPoint(way))) AS way, ref
+           FROM planet_osm_line
+          WHERE ref IS NOT NULL
+	    AND tags->'allotments' = 'plot'
+	    AND ST_Intersects(way, !bbox!)
 	) AS way
-    </Parameter>
-    <Parameter name="geometry_field">way</Parameter>
-    &datasource-settings;
-  </Datasource>
-</Layer>
+      </Parameter>
+      <Parameter name="geometry_field">way</Parameter>
+      &datasource-settings;
+    </Datasource>
+  </Layer>
 
 </Map>
