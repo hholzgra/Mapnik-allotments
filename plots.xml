@@ -36,6 +36,7 @@
           WHERE ref IS NOT NULL
             AND tags->'allotments' = 'plot'
             AND ST_Intersects(way, !bbox!)
+            AND ST_NumPoints(way) >= 4
         ) AS way
       </Parameter>
       <Parameter name="geometry_field">way</Parameter>
