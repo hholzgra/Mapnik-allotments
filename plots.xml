@@ -3,7 +3,7 @@
 <!ENTITY datasource-settings SYSTEM "inc/datasource-settings.xml.inc">
 ]>
 
-<Map srs="+init=epsg:3857" background-color="transparent">
+<Map srs="epsg:3857" background-color="transparent">
 
   <FontSet name="fontset-0">
     <Font face-name="DejaVu Sans Book"/>
@@ -19,7 +19,7 @@
     </Rule>
   </Style>
 
-  <Layer name="plot" status="on"  srs="+init=epsg:3857">
+  <Layer name="plot" status="on"  srs="epsg:3857">
     <StyleName>plot</StyleName>
     <Datasource>
       <Parameter name="table">
