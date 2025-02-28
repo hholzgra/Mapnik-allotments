@@ -14,6 +14,7 @@
 
   <Style name="plot">
     <Rule>
+      <MaxScaleDenominator>34124</MaxScaleDenominator>
       <LineSymbolizer stroke="#444444" stroke-width="0.4"/>
       <TextSymbolizer fill="#000000" fontset-name="fontset-0" placement="interior" size="10"><![CDATA[[ref]]]></TextSymbolizer>
     </Rule>
